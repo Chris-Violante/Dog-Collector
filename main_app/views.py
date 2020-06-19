@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Dog
+from django.views.generic.edit import CreateView
 # Create your views here.
 
 
@@ -19,3 +20,9 @@ def dogs_index(request):
 def dog_detail(request, dog_id):
     dog = Dog.objects.get(id=dog_id)
     return render(request, 'dogs/detail.html', {'dog': dog})
+
+
+class DogCreate(CreateView):
+    model = Dog
+    fields = '__all__'
+
